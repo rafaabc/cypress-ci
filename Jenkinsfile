@@ -58,7 +58,7 @@ pipeline {
 
     post {
         always {
-            echo "Building the application"
+            echo "Test suite completed"
         }
     }
 }
