@@ -1,23 +1,24 @@
 pipeline {
     agent any
 
-    tools { nodejs 'Node21' }
+    parameters{
+        string(name: 'SPEC', defaultValue: "cypress/integration/examples/**", description: "Enter the script path that you want to execute")
+        choice(name: 'BROWSER', choices: ['chrome'], description: "Choose the browser which you want to execute")
+    }    
 
-    stages {
-        stage('Install dependencies') {
-            steps {
-                sh 'npm i'
-            }
-        }
-        stage('e2e checks') {
-            steps {
-                sh 'npm run cypress run'
-            }
-        }
+    options{
+        ansiColor('xterm')
     }
-    post {
-        always {
-            junit 'results/*.xml'
+
+    stages{
+        stage('Building'){
+            echo "Building the application"
         }
+        stage('Testing'){
+            steps{
+               bat "npm i"
+                bat "npx cypress run --browser ${BROWSER} --spec ${SPEC}"
+            }
+        }   
     }
 }
