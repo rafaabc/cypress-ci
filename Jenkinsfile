@@ -27,8 +27,14 @@ pipeline {
     parameters {
         string(name: 'SPEC', defaultValue: 'cypress/e2e/1-getting-started/**', description: 'cypress examples')
         choice(name: 'BROWSER', choices: ['chrome', 'edge', 'firefox'], description: 'Pick the web browser you want to use to run your scripts')
-    }   
-    
+    }
+
+    //The options directive allows configuring Pipeline-specific options from within the Pipeline itself.
+    //Pipeline provides a number of these options, such as buildDiscarder, but they may also be provided by
+    //plugins, such as timestamps. Ex: retry on failure
+    options {
+        ansiColor('xterm')
+    }    
 
     //The stage directive goes in the stages section and should contain a steps section, an optional agent section, 
     //or other stage-specific directives. Practically speaking, all of the real work done by a Pipeline will be wrapped
