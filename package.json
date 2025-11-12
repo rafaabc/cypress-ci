@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cy:open": "cypress open",
-    "cy:run": "cypress run"
+  "cy:open": "cypress open",
+  "cy:open:mobile": "cypress open --config viewportWidth=410 viewportHeight=860",
+  "test": "cypress run",
+  "test:mobile": "cypress run --config viewportWidth=410 viewportHeight=860",
+  "test:cloud": "cypress run --record"
   },
   "keywords": [],
   "author": "",
